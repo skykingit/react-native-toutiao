@@ -45,8 +45,9 @@ const style = StyleSheet.create({
         flexDirection:"row"
     },
     releaseBtn:{
-        width:45,
-        alignItems:"flex-end"
+        width:36,
+        alignItems:"center",
+        paddingLeft:10
     } ,
     releaseIcon:{
         width:36,
@@ -54,7 +55,8 @@ const style = StyleSheet.create({
     },
     releaseWord:{
         fontSize:14,
-        color:"white"
+        color:"white",
+        alignItems:"center"
     }
 
 })

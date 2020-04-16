@@ -30,7 +30,7 @@ const style = StyleSheet.create({
     btnItem:{
         flexDirection:"row",
         alignItems:"center",
-        width:140,
+        width:120,
         flex:1
     },
     btnImgArea:{
