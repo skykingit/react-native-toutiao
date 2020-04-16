@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View,Image ,StyleSheet} from 'react-native';
+import { Text, View,Image ,StyleSheet,TouchableOpacity} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import ImagePath from '../../config/imagePath'
 
@@ -35,7 +35,9 @@ const style = StyleSheet.create({
         padding:10
     },
     inputBtn:{
-        flex:1
+        flex:1,
+        alignItems:"center",
+        flexDirection:"row"
     },
     releaseBtn:{
         width:45,
@@ -57,13 +59,15 @@ export default class Header extends Component{
         return(
             <View style={style.header}>
                 <View style={style.hContent}>
-                    <View style={style.inputArea}>
+                    <View style={style.inputArea} >
                         <View style={style.searchIcon}>
                             <Image source={ImagePath.Hot}  style={{width:20,height:20}} />
                         </View>
-                        <View style={style.inputBtn}>
-                            <Text>新闻.......</Text>
-                        </View>
+                        <TouchableOpacity style={style.inputBtn} onPress={()=>this.props.navigation.navigate('Search')}>
+                            <View style={style.inputBtn} >
+                                <Text>新闻.......</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                     <View style={style.releaseBtn}>
                         <Image source={ImagePath.CameraFill} style={style.releaseIcon} />

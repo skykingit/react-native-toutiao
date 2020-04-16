@@ -9,5 +9,6 @@ export default{
     MovieFill:require('../assets/icon/video_fill.png'),
     User:require('../assets/icon/user.png'),
     UserFill:require('../assets/icon/user_fill.png'),
-    CameraFill:require('../assets/icon/camera_fill.png')
+    CameraFill:require('../assets/icon/camera_fill.png'),
+    ArrowLeft:require('../assets/icon/arrow_left.png'),
 }

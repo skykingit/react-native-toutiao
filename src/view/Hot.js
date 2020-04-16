@@ -7,7 +7,7 @@ export default class Home extends Component{
         return(
             <>
                 <StatusBar barStyle="light-content" />
-                <Header />
+                <Header navigation={this.props.navigation} />
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <View style={{width:'100%',height:100,alignItems:"center"}}>
                         <Text>热搜</Text>

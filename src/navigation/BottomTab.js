@@ -16,7 +16,7 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    // <NavigationContainer>
       <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
@@ -57,6 +57,6 @@ export default function App() {
         <Tab.Screen name="Movie" component={MovieScreen} options={{title:"放映厅"}} />
         <Tab.Screen name="User" component={UserScreen} options={{title:"我的"}} />
       </Tab.Navigator>
-    </NavigationContainer>
+    // </NavigationContainer>
   );
 }
