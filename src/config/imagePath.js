@@ -11,4 +11,7 @@ export default{
     UserFill:require('../assets/icon/user_fill.png'),
     CameraFill:require('../assets/icon/camera_fill.png'),
     ArrowLeft:require('../assets/icon/arrow_left.png'),
+    NewsImg1:require('../assets/s1.jpeg'),
+    NewsImg2:require('../assets/s2.jpeg'),
+    ZYM:require('../assets/zym.jpeg')
 }

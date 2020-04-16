@@ -10,7 +10,6 @@ export default function Home({ navigation, route }){
                 <Header  navigation={navigation} />
                 <View style={style.Pagecontainer}>
                     <ScrollPage  PageName="Home" />
-                
                 </View>
             </>
         )
@@ -20,6 +19,7 @@ const style = StyleSheet.create({
     Pagecontainer:{
         flex: 1, 
         justifyContent: 'center', 
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor:"white"
     }
 })

@@ -1,37 +1,46 @@
 import React, { Component } from 'react'
 import { Text, View,Image ,StyleSheet,TouchableOpacity} from 'react-native';
 
-export default class NewIetmTop extends Component{
-    constructor(porps){
-        super(props)
-    }
+export default function NewIetmTop({item}){
 
-    render(){
         return(
             <View style={style.itemArea}>
-                <View style={style.itemTitle}>
-                    {this.props.item.title}
+                <View >
+                    <Text style={style.itemTitle}>
+                        {item.title}
+                    </Text>
                 </View>
-                <View>
-                    <Text style={[style.type,style.paddingRight]}>
-                        置顶
-                    </Text>
-                    <Text style={style.paddingRight}>
-                        {this.props.item.author}
-                    </Text>
-                    <Text>
-                        {this.props.item.commentNumber}
+                <View style={style.footArea}>
+                    <Text style={style.itemFooter}>
+                        <Text style={[style.type,style.paddingRight]}>
+                            置顶
+                        </Text>
+                        <Text>    </Text>
+                        <Text style={style.paddingRight}>
+                            {item.author}
+                        </Text>
+                        <Text>    </Text>
+                        <Text style={style.paddingRight}>
+                            {item.commentNumber+'评论'}
+                        </Text>
                     </Text>
                 </View>
             </View>
         )
-    }
 }
 
 const style = StyleSheet.create({
     itemArea:{
-        height:60,
-        padding:5
+        paddingTop:5,
+        paddingBottom:5,
+        paddingLeft:10,
+        paddingRight:10,
+        borderBottomWidth:1,
+        borderBottomColor:"#f9f2f2"
+    },
+    footArea:{
+        flex:1,
+        flexDirection:"column"
     },
     itemTitle:{
         lineHeight:30,
@@ -39,13 +48,13 @@ const style = StyleSheet.create({
     },
     itemFooter:{
         lineHeight:20,
-        fontSize:10
+        fontSize:12
     },
     type:{
         color:"red"
     },
     paddingRight:{
-        paddingRight:10
+        marginLeft:10
     }
     
 })

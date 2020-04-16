@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
-import { Text, View,Image ,StyleSheet,TouchableOpacity} from 'react-native';
+import { Text, View ,StyleSheet,FlatList} from 'react-native';
+import APIData from '../../config/API'
+import NewsItemTop from './NewsItemTop'
+import NewsItemOne from './NewItemType1'
+import NewsItemTwo from './NewItemType2'
 
 export default class ScrollPageContent extends Component{
     constructor(props){
-        super(props,"ScrollPageContent")
-        console.log(props,"in ScrollPageContent");
+        super(props)
+        console.log(props,"ScrollPageContent")
+        this.state = {
+            newListData:APIData.NewsList
+        }
         this.onEnter = this.onEnter.bind(this)
         this.onLeave = this.onLeave.bind(this)
     }
@@ -19,11 +26,31 @@ export default class ScrollPageContent extends Component{
     
 
     render(){
-        return(
-            <View style={[style.pageContent,{backgroundColor:this.props.i%2?'red':'blue'}]}>
-               <Text style={{fontSize:30,color:"white"}}>{this.props.tabLabel}</Text>
-            </View>
-        )
+        if(this.props.tabLabel == "推荐"){
+            return(
+                <View style={[style.pageContent]}>
+                   <FlatList
+                   data={this.state.newListData}
+                   renderItem={({item})=>{
+                       if(item.type ==  1){
+                        return <NewsItemOne item={item}/>
+                       }else if(item.type == 2){
+                            return <NewsItemTwo item={item}/>
+                       }else{
+                           return <NewsItemTop item={item}/>
+                       }
+                   }}
+                   />
+                </View>
+            )
+        }else{
+            return(
+                <View>
+                    <Text>{this.props.tabLabel}</Text>
+                </View>
+            )
+        }
+        
     }
 }
 

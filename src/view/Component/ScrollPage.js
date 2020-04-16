@@ -15,7 +15,6 @@ export default class ScrollPage extends Component{
       children:[],
       initialPage:1
     }
-    console.log(this.state,"ScrollPage")
     this.handleChangeTab = this.handleChangeTab.bind(this)
   }
 
