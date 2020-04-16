@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View,Image ,StyleSheet,TouchableOpacity} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import ImagePath from '../../config/imagePath'
+import RealeaseDropDownBox from './ReleaseDropDownBox'
 
 const StatusBarHeight = getStatusBarHeight()
 console.log(StatusBarHeight);
@@ -34,8 +35,12 @@ const style = StyleSheet.create({
         width:40,
         padding:10
     },
-    inputBtn:{
+    inputBtnArea:{
         flex:1,
+        alignItems:"center",
+        flexDirection:"row"
+    },
+    inputBtn:{
         alignItems:"center",
         flexDirection:"row"
     },
@@ -55,26 +60,56 @@ const style = StyleSheet.create({
 })
 
 export default class Header extends Component{
+    constructor(props){
+        super(props)
+        console.log(props,"header")
+        this.state = {
+            RealeaseDropDownBoxFlag:false
+        }
+        this.showReleaseDropDownBox = this.showReleaseDropDownBox.bind(this)
+        this.hideReleaseDropDownBox = this.hideReleaseDropDownBox.bind(this)
+    }
+
+    showReleaseDropDownBox(){
+        console.log("in...........");
+        this.setState({
+            RealeaseDropDownBoxFlag:true
+        })
+    }
+
+    hideReleaseDropDownBox(){
+        this.setState({
+            RealeaseDropDownBoxFlag:false
+        })
+    }
+
     render(){
+
+        let ReleaseArea = <></>
+        if(this.state.RealeaseDropDownBoxFlag)
+        ReleaseArea =  <RealeaseDropDownBox hideReleaseDropDownBox={this.hideReleaseDropDownBox.bind(this)} />
         return(
-            <View style={style.header}>
-                <View style={style.hContent}>
-                    <View style={style.inputArea} >
-                        <View style={style.searchIcon}>
-                            <Image source={ImagePath.Hot}  style={{width:20,height:20}} />
-                        </View>
-                        <TouchableOpacity style={style.inputBtn} onPress={()=>this.props.navigation.navigate('Search')}>
-                            <View style={style.inputBtn} >
-                                <Text>新闻.......</Text>
+            <>
+               {ReleaseArea}
+                <View style={style.header}>
+                    <View style={style.hContent}>
+                        <TouchableOpacity style={style.inputArea}  onPress={()=>this.props.navigation.navigate('Search')}>
+                            <View style={style.searchIcon}>
+                                <Image source={ImagePath.Hot}  style={{width:20,height:20}} />
+                            </View>
+                            <View style={style.inputBtnArea} >
+                                <View style={style.inputBtn} >
+                                    <Text>新闻.......</Text>
+                                </View>
                             </View>
                         </TouchableOpacity>
-                    </View>
-                    <View style={style.releaseBtn}>
-                        <Image source={ImagePath.CameraFill} style={style.releaseIcon} />
-                        <Text style={style.releaseWord}>发布</Text>
+                        <TouchableOpacity style={style.releaseBtn} onPress={()=>this.showReleaseDropDownBox()}>
+                            <Image source={ImagePath.CameraFill} style={style.releaseIcon} />
+                            <Text style={style.releaseWord}>发布</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+            </>
         )
     }
 }

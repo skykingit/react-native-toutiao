@@ -11,12 +11,10 @@ import HotScreen from '../view/Hot.js'
 import MovieScreen from '../view/Movie.js'
 import UserScreen from '../view/User.js'
 
-
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    // <NavigationContainer>
       <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
@@ -57,6 +55,6 @@ export default function App() {
         <Tab.Screen name="Movie" component={MovieScreen} options={{title:"放映厅"}} />
         <Tab.Screen name="User" component={UserScreen} options={{title:"我的"}} />
       </Tab.Navigator>
-    // </NavigationContainer>
-  );
+      
+  )
 }

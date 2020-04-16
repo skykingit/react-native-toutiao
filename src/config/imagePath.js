@@ -1,8 +1,8 @@
 export default{
     Home:require('../assets/icon/home.png'),
     HomeFill:require('../assets/icon/home_fill.png'),
-    Xigua:require('../assets/icon/arrowtriangle_right.png'),
-    XiguaFill:require('../assets/icon/arrowtriangle_right_fill.png'),
+    Xigua:require('../assets/icon/arrowTriangle_right.png'),
+    XiguaFill:require('../assets/icon/arrowTriangle_right_fill.png'),
     Hot:require('../assets/icon/search.png'),
     HotFill:require('../assets/icon/search_fill.png'),
     Movie:require('../assets/icon/video.png'),
@@ -13,5 +13,13 @@ export default{
     ArrowLeft:require('../assets/icon/arrow_left.png'),
     NewsImg1:require('../assets/s1.jpeg'),
     NewsImg2:require('../assets/s2.jpeg'),
-    ZYM:require('../assets/zym.jpeg')
+    ZYM:require('../assets/zym.jpeg'),
+    PaperFill:require('../assets/icon/paper_fill.png'),
+    PenFill:require('../assets/icon/pen_fill.png'),
+    SVideoFill:require('../assets/icon/sVideo_fill.png'),
+    VidiconFill:require('../assets/icon/vidicon_fill.png'),
+    QuestionFill:require('../assets/icon/question_fill.png'),
+    LiveFill:require('../assets/icon/live_fill.png'),
+    HornFill:require('../assets/icon/horn_fill.png'),
+    ArrowTriangleTopFill:require('../assets/icon/arrowTriangle_top_fill.png')
 }
