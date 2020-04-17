@@ -1,10 +1,11 @@
 import React, { Component,useState } from 'react'
-import { Text, View,Image ,StyleSheet,TextInput, Button,TouchableOpacity, Modal} from 'react-native';
+import { Text, View,Image ,StyleSheet,TextInput, Button,TouchableOpacity, Modal,Platform,StatusBar} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import ImagePath from '../config/imagePath'
 
-const StatusBarHeight = getStatusBarHeight()
-
+let StatusBarHeight = getStatusBarHeight()
+if(Platform.OS == "android")
+StatusBarHeight = 0;
 export default class Header extends Component{
     constructor(props){
         super(props)
@@ -17,6 +18,7 @@ export default class Header extends Component{
     render(){
         return(
             <>
+                <StatusBar backgroundColor={Platform.OS == "android"?"white":""}  barStyle={Platform.OS=="android"? "dark-content":"light-content"} />
                 <View style={style.header}>
                     <View style={style.hContent}>
                         <TouchableOpacity style={style.backArrow} onPress={()=> this.props.navigation.goBack()}>

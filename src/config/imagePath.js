@@ -21,5 +21,6 @@ export default{
     QuestionFill:require('../assets/icon/question_fill.png'),
     LiveFill:require('../assets/icon/live_fill.png'),
     HornFill:require('../assets/icon/horn_fill.png'),
-    ArrowTriangleTopFill:require('../assets/icon/arrowTriangle_top_fill.png')
+    ArrowTriangleTopFill:require('../assets/icon/arrowTriangle_top_fill.png'),
+    DevelopingGIF:require('../assets/coding.gif')
 }

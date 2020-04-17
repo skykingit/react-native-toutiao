@@ -15,27 +15,27 @@ export default function NewIetmType({item}){
                 </View>
                 <View style={style.imgList}>
                     <View style={style.imgItem}>
-                        <Image source={ImagePath.NewsImg1} resizeMode={"cover"} style={style.img} />
+                        <Image source={{uri:"http:"+item.image_list[0].url}} resizeMode={"cover"} style={style.img} />
                     </View>
                     <View style={style.imgItem}>
-                        <Image source={ImagePath.NewsImg1} resizeMode={"cover"} style={style.img} />
+                        <Image source={{uri:"http:"+item.image_list[1].url}} resizeMode={"cover"} style={style.img} />
                     </View>
                     <View style={style.imgItem}>
-                        <Image source={ImagePath.NewsImg1} resizeMode={"cover"} style={style.img} />
+                        <Image source={{uri:"http:"+item.image_list[2].url}}  resizeMode={"cover"} style={style.img} />
                     </View>
                 </View>
                 <View style={style.footArea}>
                     <Text style={style.itemFooter}>
                         <Text style={style.paddingRight}>
-                            {item.author} 
+                            {item.source} 
                         </Text>
                         <Text>    </Text>
                         <Text style={style.paddingRight}>
-                            {item.commentNumber+'评论'}
+                            {item.comments_count+'评论'}
                         </Text>
                         <Text>    </Text>
                         <Text style={style.paddingRight}>
-                            {item.time}
+                            {item.chinese_tag}
                         </Text>
                     </Text>
                 </View>

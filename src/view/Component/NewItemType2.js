@@ -10,11 +10,11 @@ export default function NewIetmType({item}){
             <View style={[style.itemArea]}>
                 <View style={style.header}>
                     <View style={style.authorImgArea}>
-                        <Image source={ImagePath.ZYM} resizeMode={"cover"} style={style.authorImg} />
+                        <Image source={{uri:"http:"+item.image_url}} resizeMode={"cover"} style={style.authorImg} />
                     </View>
                     <View style={style.hInfo}>
-                        <Text style={style.hName}>{item.author}</Text>
-                        <Text style={style.hAuth}>{item.authentication}</Text>
+                        <Text style={style.hName}>{item.source}</Text>
+                        <Text style={style.hAuth}>{item.chinese_tag}</Text>
                     </View>
                 </View>
                 <View >
@@ -23,20 +23,20 @@ export default function NewIetmType({item}){
                     </Text>
                 </View>
                 <View style={style.imgArea}>
-                    <Image source={ImagePath.NewsImg2} resizeMode={"cover"} style={style.img} />
+                    <Image source={{uri:"http:"+item.image_url}} resizeMode={"cover"} style={style.img} />
                 </View>
                 <View style={style.footArea}>
                     <Text style={style.itemFooter}>
                         <Text style={[style.type,style.paddingRight]}>
-                         {item.author}
+                         {item.source}
                         </Text>
                         <Text>    </Text>
                         <Text style={style.paddingRight}>
-                            {item.commentNumber+'评论'}
+                            {item.comments_count+'评论'}
                         </Text>
                         <Text>    </Text>
                         <Text style={style.paddingRight}>
-                            {item.time}
+                            {item.chinese_tag}
                         </Text>
                     </Text>
                 </View>

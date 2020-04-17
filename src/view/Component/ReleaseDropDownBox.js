@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { Text, View,Image ,StyleSheet,TouchableOpacity,Dimensions} from 'react-native';
+import { Text, View,Image ,StyleSheet,TouchableOpacity,Dimensions,Platform} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import ImagePath from '../../config/imagePath'
 
-const StatusBarHeight = getStatusBarHeight()
+let StatusBarHeight = getStatusBarHeight()
+if(Platform.OS == "android")
+StatusBarHeight = 0;
 let WindowWidth = Dimensions.get("window").width;
 let WindowHeight = Dimensions.get("window").height;
-console.log(StatusBarHeight);
 const style = StyleSheet.create({
     container:{
         position:"absolute",

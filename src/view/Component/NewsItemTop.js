@@ -13,15 +13,15 @@ export default function NewIetmTop({item}){
                 <View style={style.footArea}>
                     <Text style={style.itemFooter}>
                         <Text style={[style.type,style.paddingRight]}>
-                            置顶
+                            {item.chinese_tag}
                         </Text>
                         <Text>    </Text>
                         <Text style={style.paddingRight}>
-                            {item.author}
+                            {item.source}
                         </Text>
                         <Text>    </Text>
                         <Text style={style.paddingRight}>
-                            {item.commentNumber+'评论'}
+                            {item.comments_count+'评论'}
                         </Text>
                     </Text>
                 </View>

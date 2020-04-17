@@ -65,7 +65,14 @@ const NewsList = [
     {type:2,title:"一直只找到 良师益友 这一个词形容好的(各种)关系",author:'张一鸣',authentication:"字节跳动创始人兼CEO",commentNumber:5098,time:'1年前'} 
 ]
 
+import HomeRecommand from '../simulateData/home/remommend'
+
+const Home = {
+    "推荐":HomeRecommand
+}
+
 export default{
     TopSliderMenuList,
-    NewsList
+    NewsList,
+    Home
 }

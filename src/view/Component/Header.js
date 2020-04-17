@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { Text, View,Image ,StyleSheet,TouchableOpacity} from 'react-native';
+import { Text, View,Image ,StyleSheet,TouchableOpacity,Platform} from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import ImagePath from '../../config/imagePath'
 import RealeaseDropDownBox from './ReleaseDropDownBox'
 
-const StatusBarHeight = getStatusBarHeight()
-console.log(StatusBarHeight);
+let StatusBarHeight = getStatusBarHeight()
+if(Platform.OS == "android")
+StatusBarHeight = 0;
+console.log(StatusBarHeight,"StatusBarHeight");
 const style = StyleSheet.create({
     header:{
         backgroundColor:"red",
@@ -45,16 +47,16 @@ const style = StyleSheet.create({
         flexDirection:"row"
     },
     releaseBtn:{
-        width:36,
+        width:40,
         alignItems:"center",
         paddingLeft:10
     } ,
     releaseIcon:{
-        width:36,
-        height:36
+        width:30,
+        height:30
     },
     releaseWord:{
-        fontSize:14,
+        fontSize:12,
         color:"white",
         alignItems:"center"
     }
