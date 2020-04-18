@@ -3,11 +3,13 @@ import { Text, View,Image ,StyleSheet,TouchableOpacity,Platform} from 'react-nat
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import ImagePath from '../../config/imagePath'
 import RealeaseDropDownBox from './ReleaseDropDownBox'
+import {connect } from 'react-redux';
+
+import {ShowReleaseDropBox,HideReleaseDropBox} from '../../store/common/actions'
 
 let StatusBarHeight = getStatusBarHeight()
 if(Platform.OS == "android")
 StatusBarHeight = 0;
-console.log(StatusBarHeight,"StatusBarHeight");
 const style = StyleSheet.create({
     header:{
         backgroundColor:"red",
@@ -63,35 +65,16 @@ const style = StyleSheet.create({
 
 })
 
-export default class Header extends Component{
+class Header extends Component{
     constructor(props){
         super(props)
         console.log(props,"header")
-        this.state = {
-            RealeaseDropDownBoxFlag:false
-        }
-        this.showReleaseDropDownBox = this.showReleaseDropDownBox.bind(this)
-        this.hideReleaseDropDownBox = this.hideReleaseDropDownBox.bind(this)
     }
-
-    showReleaseDropDownBox(){
-        console.log("in...........");
-        this.setState({
-            RealeaseDropDownBoxFlag:true
-        })
-    }
-
-    hideReleaseDropDownBox(){
-        this.setState({
-            RealeaseDropDownBoxFlag:false
-        })
-    }
-
     render(){
 
         let ReleaseArea = <></>
-        if(this.state.RealeaseDropDownBoxFlag)
-        ReleaseArea =  <RealeaseDropDownBox hideReleaseDropDownBox={this.hideReleaseDropDownBox.bind(this)} />
+        if(this.props.RealeaseDropDownBoxFlag)
+        ReleaseArea =  <RealeaseDropDownBox hideReleaseDropDownBox={this.props.HideReleaseDropBox} />
         return(
             <>
                {ReleaseArea}
@@ -107,7 +90,7 @@ export default class Header extends Component{
                                 </View>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={style.releaseBtn} onPress={()=>this.showReleaseDropDownBox()}>
+                        <TouchableOpacity style={style.releaseBtn} onPress={this.props.ShowReleaseDropBox}>
                             <Image source={ImagePath.CameraFill} style={style.releaseIcon} />
                             <Text style={style.releaseWord}>发布</Text>
                         </TouchableOpacity>
@@ -117,5 +100,15 @@ export default class Header extends Component{
         )
     }
 }
+
+function mapStateToProps(state){
+    return {RealeaseDropDownBoxFlag:state.Common.releaseDropBoxFlag}
+  }
+  
+  
+  export default connect(
+    mapStateToProps,
+    {ShowReleaseDropBox,HideReleaseDropBox}
+  )(Header)
 
 

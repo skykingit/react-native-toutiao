@@ -3,7 +3,12 @@ import { Text, View ,StatusBar} from 'react-native';
 import Header from './Component/Header'
 import ScrollPage from './Component/ScrollPage'
 
+
 export default class Home extends Component{
+    constructor(props){
+        super(props)
+
+    }
     render(){
         return(
             <>

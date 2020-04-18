@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Text, View ,StyleSheet,FlatList} from 'react-native';
 import APIData from '../../config/API'
 import NewsItemTop from './NewsItemTop'
@@ -8,7 +8,7 @@ import Developing from './Developing'
 
 const _ = require("lodash")
 
-export default class ScrollPageContent extends PureComponent{
+export default class ScrollPageContent extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -36,7 +36,7 @@ export default class ScrollPageContent extends PureComponent{
     }
 
     getMoreNewsList(){
-
+        console.log("in more")
         if(!this.state.noMoreFlag){
             let pageNumber = this.state.currentPageNumber+1
             const AllList = APIData.Home[this.props.tabLabel]
@@ -89,9 +89,12 @@ export default class ScrollPageContent extends PureComponent{
                             return <NewsItemTwo item={item}/>
                        }
                    }}
-                   keyExtractor={item=>item.id}
-                   onEndReachedThreshold={this.state.onEndReachedThreshold || 0.1}
-                   onEndReached={this.getMoreNewsList.bind(this)}
+                   keyExtractor={item=>item.item_id}
+                   onEndReachedThreshold={ 0.1}
+                   onEndReached={()=>{
+                       if(!this.state.noMoreFlag)
+                       this.getMoreNewsList()
+                   } }
                    ListFooterComponent={this.renderListFooter.bind(this)}
                    />
                 </View>
@@ -107,7 +110,7 @@ export default class ScrollPageContent extends PureComponent{
     renderListFooter(){
         let footer = <View style={style.listFooter}>
                         <Text style={style.footerWord}>
-                        "数据加载中"
+                        数据加载中
                         </Text>
                     </View>
         let footerWord = "数据加载中";

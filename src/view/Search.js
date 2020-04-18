@@ -29,7 +29,7 @@ export default class Header extends Component{
                                 <Image source={ImagePath.Hot}  style={{width:20,height:20}} />
                             </View>
                             <View style={style.inputBtn}>
-                                <TextInput placeholder="新闻" autoFocus="true" value={this.state.searchKeyword} onChangeText={text=>this.handleChange(text)} />
+                                <TextInput placeholder="新闻" autoFocus={true} value={this.state.searchKeyword} onChangeText={text=>this.handleChange(text)} />
                             </View>
                         </View>
                         <View style={style.searchBtn}>
