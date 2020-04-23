@@ -3,8 +3,8 @@ import {
   StyleSheet
 } from 'react-native';
 import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
-import ScrollPageContent from './ScrollPageContent'
-import APIData from '../../config/API'
+import ScrollTabPage from './ScrollTabPage'
+import APIData from '../../../config/API'
 
 export default class ScrollPage extends Component{
   constructor(props){
@@ -35,7 +35,7 @@ export default class ScrollPage extends Component{
       scrollWithoutAnimation="false"
     >
       {this.state.tabs.map((tab, i) => {
-        return <ScrollPageContent 
+        return <ScrollTabPage 
          ref={(ref) => (this.state.children[i] = ref)}
           tabLabel={tab.name}
           i={i}

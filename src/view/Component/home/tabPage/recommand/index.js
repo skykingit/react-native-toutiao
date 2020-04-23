@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { Text, View ,StyleSheet,FlatList} from 'react-native';
-import APIData from '../../config/API'
+import APIData from "../../../../../simulateData/home"
 import NewsItemTop from './NewsItemTop'
-import NewsItemOne from './NewItemType1'
-import NewsItemTwo from './NewItemType2'
-import Developing from './Developing'
+import NewsItemOne from './NewItemTypeOne'
+import NewsItemTwo from './NewItemTypeTwo'
 
 const _ = require("lodash")
 
-export default class ScrollPageContent extends Component{
+export default class Reommand extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -21,11 +20,10 @@ export default class ScrollPageContent extends Component{
         this.onEnter = this.onEnter.bind(this)
         this.onLeave = this.onLeave.bind(this)
         this.getMoreNewsList = this.getMoreNewsList.bind(this)
-        // console.log(this.state)
     }
 
     componentDidMount(){
-        const AllList = APIData.Home[this.props.tabLabel]
+        const AllList = APIData.Recommand
         let count = this.state.pageCount
         let start = 0
         let end = this.state.pageCount
@@ -73,7 +71,6 @@ export default class ScrollPageContent extends Component{
     
 
     render(){
-        if(this.props.tabLabel == "推荐"){
             return(
                 <View style={[style.pageContent]}>
                    <FlatList
@@ -99,11 +96,6 @@ export default class ScrollPageContent extends Component{
                    />
                 </View>
             )
-        }else{
-            return(
-                <Developing tabPage={this.props.tabLabel} />
-            )
-        }
         
     }
 

@@ -1,19 +1,19 @@
 const TopSliderMenuList = {
     Home:[
-        {"name":"关注"},
-        {"name":"推荐"},
-        {"name":"抗击肺炎"},
-        {"name":"小视频"},
-        {"name":"热点"},
-        {"name":"科技"},
-        {"name":"健康"},
-        {"name":"上海"},
-        {"name":"在家上课"},
-        {"name":"财经"},
-        {"name":"军事"},
-        {"name":"娱乐"},
-        {"name":"文化"},
-        {"name":"历史"}
+        {"name":"关注",key:""},
+        {"name":"推荐",key:"recommand"},
+        {"name":"抗击肺炎",key:""},
+        {"name":"小视频",key:""},
+        {"name":"热点",key:""},
+        {"name":"科技",key:""},
+        {"name":"健康",key:""},
+        {"name":"上海",key:""},
+        {"name":"在家上课",key:""},
+        {"name":"财经",key:""},
+        {"name":"军事",key:""},
+        {"name":"娱乐",key:""},
+        {"name":"文化",key:""},
+        {"name":"历史",key:""}
     ],
     Xigua:[
         {"name":"推荐"},
@@ -53,26 +53,7 @@ const TopSliderMenuList = {
     ]
 }
 
-//tyepe 0:置顶 1:类型1，2：类型2
-const NewsList = [
-    {type:0,title:"习近平回信勉励武汉社区工作者",author:'新华网客户端',commentNumber:1495},
-    {type:0,title:"重磅微纪录片: 新.生",author:'新华网客户端',commentNumber:488},
-    {type:1,title:"为什么赌博最后总会输,因为你无法战胜\"凯利公式\"",author:'青云计划',commentNumber:5098,time:'1个月前'},
-    {type:2,title:"一直只找到 良师益友 这一个词形容好的(各种)关系",author:'张一鸣',authentication:"字节跳动创始人兼CEO",commentNumber:5098,time:'1年前'} ,
-    {type:1,title:"为什么赌博最后总会输,因为你无法战胜\"凯利公式\"",author:'青云计划',commentNumber:5098,time:'1个月前'},
-    {type:2,title:"一直只找到 良师益友 这一个词形容好的(各种)关系",author:'张一鸣',authentication:"字节跳动创始人兼CEO",commentNumber:5098,time:'1年前'} ,
-    {type:1,title:"为什么赌博最后总会输,因为你无法战胜\"凯利公式\"",author:'青云计划',commentNumber:5098,time:'1个月前'},
-    {type:2,title:"一直只找到 良师益友 这一个词形容好的(各种)关系",author:'张一鸣',authentication:"字节跳动创始人兼CEO",commentNumber:5098,time:'1年前'} 
-]
-
-import HomeRecommand from '../simulateData/home/remommend'
-
-const Home = {
-    "推荐":HomeRecommand
-}
 
 export default{
-    TopSliderMenuList,
-    NewsList,
-    Home
+    TopSliderMenuList
 }

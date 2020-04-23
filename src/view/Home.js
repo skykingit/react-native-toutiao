@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View ,StatusBar,Button,StyleSheet,Platform} from 'react-native';
 import Header from './Component/Header'
-import ScrollPage from './Component/ScrollPage'
+import ScrollTab from './Component/home/ScrollTab'
 
 export default function Home({ navigation, route }){
         return(
@@ -9,7 +9,7 @@ export default function Home({ navigation, route }){
                 <StatusBar barStyle={"light-content"} backgroundColor={Platform.OS == "android"?"red":""} />
                 <Header  navigation={navigation} />
                 <View style={style.Pagecontainer}>
-                    <ScrollPage  PageName="Home" />
+                    <ScrollTab  PageName="Home" />
                 </View>
             </>
         )
