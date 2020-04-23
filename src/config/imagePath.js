@@ -12,6 +12,7 @@ export default{
     CameraFill:require('../assets/icon/camera_fill.png'),
     ArrowLeft:require('../assets/icon/arrow_left.png'),
     ArrowRight:require('../assets/icon/arrow_right.png'),
+    ArrowRightWhite:require('../assets/icon/arrow_right_white.png'),
     NewsImg1:require('../assets/s1.jpeg'),
     NewsImg2:require('../assets/s2.jpeg'),
     ZYM:require('../assets/zym.jpeg'),
@@ -39,5 +40,6 @@ export default{
     Like:require('../assets/icon/like.png'),
     Scan:require('../assets/icon/scan.png'),
     Box:require('../assets/icon/box.png'),
-    CircleChart:require('../assets/icon/circleChart.png')
+    CircleChart:require('../assets/icon/circleChart.png'),
+    TSL:require('../assets/tsl.jpeg')
 }

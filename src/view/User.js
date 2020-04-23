@@ -10,6 +10,7 @@ export default class Home extends Component{
     constructor(props){
         super(props)
         this.clickFunBtn = this.clickFunBtn.bind(this)
+        console.log(props,"user")
     }
 
     clickFunBtn(key){
@@ -21,7 +22,7 @@ export default class Home extends Component{
             <>
                 <StatusBar barStyle="dark-content" />
                 <View style={style.pageContent}>
-                    <TouchableOpacity style={style.loginArea}>
+                    <TouchableOpacity style={style.loginArea} onPress={()=> this.props.navigation.navigate("Login")}>
                         <View style={style.loginBtn}>
                             <Text style={style.loginWord}>登录</Text>
                         </View>
