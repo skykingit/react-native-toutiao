@@ -90,7 +90,7 @@ class Header extends Component{
                                 </View>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={style.releaseBtn} onPress={this.props.ShowReleaseDropBox}>
+                        <TouchableOpacity style={style.releaseBtn} activeOpacity={0.9} onPress={this.props.ShowReleaseDropBox}>
                             <Image source={ImagePath.CameraFill} style={style.releaseIcon} />
                             <Text style={style.releaseWord}>发布</Text>
                         </TouchableOpacity>
