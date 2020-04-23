@@ -34,16 +34,14 @@ export default class Reommand extends Component{
     }
 
     getMoreNewsList(){
-        console.log("in more")
         if(!this.state.noMoreFlag){
             let pageNumber = this.state.currentPageNumber+1
-            const AllList = APIData.Home[this.props.tabLabel]
+            const AllList = APIData.Recommand
             let count = this.state.pageCount
             let start = 0
             let noMoreFlag = AllList.length > pageNumber*count?false:true
             let end = !noMoreFlag ? pageNumber*count:AllList.length
             let moreList = _.slice(AllList,start,end)
-            console.log(start,end)
             let self = this
             if(!this.state.noMoreFlag)
                 self.setState({
@@ -53,7 +51,6 @@ export default class Reommand extends Component{
                     refreshingFlag:false
                 })
         }else{
-            console.log("no more now");
             this.setState({
                 onEndReachedThreshold:0
             })

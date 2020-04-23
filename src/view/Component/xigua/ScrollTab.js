@@ -13,7 +13,7 @@ export default class ScrollPage extends Component{
     this.state = {
       tabs: MenuList,
       children:[],
-      initialPage:1
+      initialPage:0
     }
     this.handleChangeTab = this.handleChangeTab.bind(this)
   }

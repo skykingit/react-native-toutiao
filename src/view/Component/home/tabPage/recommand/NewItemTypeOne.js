@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View,Image ,StyleSheet,TouchableOpacity,Dimensions} from 'react-native';
 
-import ImagePath from '../../../config/imagePath'
+import ImagePath from '../../../../../config/imagePath'
 
 let WindowWidth = Dimensions.get("window").width;
 export default function NewIetmType({item}){
