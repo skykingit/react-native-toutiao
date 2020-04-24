@@ -13,3 +13,8 @@ export const ChangeStatusBarStyle = (barStyle,barBgColor)=>({
     barStyle:barStyle,
     barBgColor:barBgColor
 })
+
+export const ChangeLoginFlag = (loginFlag)=>({
+    type:TYPE.CHANGE_LOGIN_FLAG,
+    loginFlag:loginFlag
+})

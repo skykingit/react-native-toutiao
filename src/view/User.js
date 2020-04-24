@@ -3,7 +3,7 @@ import { Text, View,StyleSheet,TouchableOpacity,Image,Platform} from 'react-nati
 import ImagePath from '../config/imagePath'
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import {connect } from 'react-redux';
-import {ChangeStatusBarStyle} from '../store/common/actions'
+import {ChangeStatusBarStyle,ChangeLoginFlag} from '../store/common/actions'
 
 let StatusBarHeight = getStatusBarHeight()
 if(Platform.OS == "android")
@@ -13,6 +13,11 @@ class User extends Component{
     constructor(props){
         super(props)
         this.clickFunBtn = this.clickFunBtn.bind(this)
+        this.state = {
+            user:"",
+            phone:"",
+            login:false
+        }
     }
 
     componentDidMount(){
@@ -20,21 +25,84 @@ class User extends Component{
             console.log("in user tab")
             this.props.ChangeStatusBarStyle("dark-content","white");
           });
+          let self = this;
+
+          Storage.load({
+              key:"loginFlag",
+              autoSync:true,
+              syncInBackground: true
+          }).then(ret=>{
+              console.log(ret)
+              if(ret&& ret.phone){
+                self.setState({
+                        phone:ret.phone,
+                        login:true
+                },()=>{
+                    self.props.ChangeLoginFlag(true)
+                })
+                console.log("in ChangeLoginFlag")
+              }
+          })
     }
     clickFunBtn(key){
         console.log("click funBtn ",key)
-        console.log(this.state)
+        switch(key){
+            case "setting":
+                this.props.navigation.navigate("Setting");
+                break;
+            default:
+                console.log("没有操作",key)
+        }
     }
     
     render(){
+        let userInfoComponent = null;
+        if(this.props.loginFlag){
+            userInfoComponent = (
+                     <View style={style.userInfoArea}>
+                        <View style={style.userImgArea}>
+                            <Image source={ImagePath.TSL} resizeMode="contain" style={style.userImg} />
+                        </View>
+                        <View style={style.infoArea}>
+                            <View style={style.nameArea}>
+                                <Text style={style.userName}>
+                                    <Text>
+                                        {this.state.phone}
+                                    </Text>
+                                    <Image source={ImagePath.ArrowRight} resizeMode="contain" style={style.icon} />
+                                </Text>
+                            </View>
+                            <View style={style.userDataArea}>
+                                <Text style={style.dataText}>
+                                    <Text>
+                                        头条  0  
+                                    </Text>
+                                    <Text>    </Text>
+                                    <Text>
+                                        关注  0  
+                                    </Text>
+                                    <Text>    </Text>
+                                    <Text>
+                                        粉丝  0  
+                                    </Text>
+                                </Text>
+                            </View>
+                        </View>
+                    </View>
+            )
+        }else{
+            userInfoComponent = (
+                <TouchableOpacity style={style.loginArea} onPress={()=> this.props.navigation.navigate("Login")}>
+                    <View style={style.loginBtn}>
+                        <Text style={style.loginWord}>登录</Text>
+                    </View>
+                </TouchableOpacity>
+            )
+        }
         return(
             <>
                 <View style={style.pageContent}>
-                    <TouchableOpacity style={style.loginArea} onPress={()=> this.props.navigation.navigate("Login")}>
-                        <View style={style.loginBtn}>
-                            <Text style={style.loginWord}>登录</Text>
-                        </View>
-                    </TouchableOpacity>
+                    {userInfoComponent}
                     <View style={style.funArea}>
                         <View style={style.funAreaTitleArea}>
                             <Text style={style.funAreaTitle}>常用功能</Text>
@@ -112,7 +180,7 @@ class User extends Component{
                                     </Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={style.funItem} onPress={()=> this.clickFunBtn(0)}>
+                            <TouchableOpacity style={style.funItem} onPress={()=> this.clickFunBtn("setting")}>
                                 <View style={style.itemImgArea}>
                                     <Image source={ImagePath.System} style={style.itemImg} />
                                 </View>
@@ -279,11 +347,51 @@ const style = StyleSheet.create({
     },
     itemWord:{
         fontSize:14
+    },
+    userInfoArea:{
+        flexDirection:"row",
+        padding:20
+    },
+    userImgArea:{
+        width:60,
+        alignItems:"center",
+        justifyContent:"center"
+    },
+    userImg:{
+        width:50,
+        height:50
+    },
+    infoArea:{
+        flex:1
+    },
+    nameArea:{
+        height:40,
+        justifyContent:"center"
+    },
+    userName:{
+        fontSize:24
+    },
+    icon:{
+        width:20,
+        height:20
+    },
+    userDataArea:{
+        height:20,
+        alignItems:"flex-start",
+        justifyContent:"center"
+    },
+    dataText:{
+        fontSize:12,
+        lineHeight:20
     }
 })
 
-  
+function mapStateToProps(state){
+    console.log(state)
+    return {loginFlag:state.Common.loginFlag}
+} 
+
   export default connect(
-    null,
-    {ChangeStatusBarStyle}
+    mapStateToProps,
+    {ChangeStatusBarStyle,ChangeLoginFlag}
   )(User)

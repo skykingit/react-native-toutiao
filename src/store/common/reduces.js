@@ -3,7 +3,8 @@ import TYPE from './type'
 const initialState = {
     releaseDropBoxFlag:false,
     statusBarStyle:"",
-    statusBarBgColor:""
+    statusBarBgColor:"",
+    loginFlag:false
 }
 
 export default function(state = initialState,action){
@@ -15,8 +16,13 @@ export default function(state = initialState,action){
             return {...state,releaseDropBoxFlag:false};
             break;
         case TYPE.CHANGE_STATUSBAR_STYLE:
-            console.log("in change....",action)
             return {...state,statusBarStyle:action.barStyle,statusBarBgColor:action.barBgColor};
+            break;
+        case TYPE.CHANGE_LOGIN_FLAG:
+            console.log("in CHANGE_LOGIN_FLAG",action.loginFlag)
+            let newState= {...state,loginFlag:action.loginFlag};
+            console.log(newState)
+            return newState;
             break;
         default:
             return state;

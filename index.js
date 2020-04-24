@@ -8,6 +8,8 @@ import {name as appName} from './app.json';
 import React ,{Component} from 'react';
 import { Provider, } from 'react-redux';
 import store from './src/store'
+import "./src/storage" 
+
 class ReduxApp extends Component{
     render(){
         return(

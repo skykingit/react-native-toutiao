@@ -3,6 +3,8 @@ import { Text, View ,StatusBar,StyleSheet,TouchableOpacity,Image,TextInput,Platf
 import ImagePath from '../config/imagePath'
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 const _ = require("lodash")
+import {connect } from 'react-redux';
+import {ChangeLoginFlag } from '../store/common/actions'
 
 let StatusBarHeight = getStatusBarHeight()
 if(Platform.OS == "android")
@@ -10,18 +12,9 @@ StatusBarHeight = 0;
 
 let self ,timer;
 const ResendCounter = 60;
-export default class Home extends Component{
+class Login extends Component{
     constructor(props){
         super(props)
-        // this.state = {
-        //     phone:"177 0163 0725",
-        //     phoneTrim:"17701630725",
-        //     phoneRegFlag:true,
-        //     showNotificationArea:true,
-        //     stateCode:86,
-        //     verification:"",
-        //     resendCounter:10
-        // }
         this.state = {
             phone:"",
             phoneTrim:"",
@@ -143,7 +136,15 @@ export default class Home extends Component{
     }
 
     login(){
-        console.log("login ")
+        let userInfo = {
+            phone:this.state.phoneTrim
+        }
+        Storage.save({
+            key:"loginFlag",
+            data:userInfo
+        })
+        this.props.ChangeLoginFlag(true)
+        this.props.navigation.navigate("User")
     }
 
     
@@ -403,3 +404,8 @@ const style = StyleSheet.create({
         marginBottom:15
     }
 })
+  
+  export default connect(
+    null,
+    {ChangeLoginFlag}
+  )(Login)

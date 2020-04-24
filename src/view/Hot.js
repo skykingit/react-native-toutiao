@@ -27,6 +27,7 @@ function ListItem({item,index}){
 class Hot extends Component{
     constructor(props) {
         super(props);
+        console.log(HotListData)
     }
 
     componentDidMount(){
@@ -58,7 +59,7 @@ class Hot extends Component{
                         <FlatList
                         data={HotListData}
                         renderItem={({item,index})=> <ListItem item={item} index={index} />}
-                        keyExtractor={({item,index})=>index}
+                        keyExtractor={item=>item.id}
                         />
                     </View>
                 
