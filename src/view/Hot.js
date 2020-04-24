@@ -3,6 +3,8 @@ import { Text, View ,StatusBar,Button,StyleSheet,FlatList,Image} from 'react-nat
 import Header from './Component/Header'
 import HotListData from '../simulateData/hot/hotList'
 import ImagePath from '../config/imagePath'
+import {connect } from 'react-redux';
+import {ChangeStatusBarStyle} from '../store/common/actions'
 
 function ListItem({item,index}){
     return(
@@ -22,15 +24,21 @@ function ListItem({item,index}){
     )
 }
 
-export default class Home extends Component{
+class Hot extends Component{
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount(){
+        this.props.navigation.addListener('tabPress', e => {
+            console.log('in hot tabpress');
+            this.props.ChangeStatusBarStyle("light-content","red");
+          });
     }
 
     render(){
         return(
             <>
-                <StatusBar barStyle="light-content" />
                 <Header navigation={this.props.navigation} />
                 <View style={style.pageContent}>
                     <View style={style.headTitle}>
@@ -145,3 +153,8 @@ const style = StyleSheet.create({
         height:12
     }
 })
+  
+export default connect(
+    null,
+    {ChangeStatusBarStyle}
+)(Hot)

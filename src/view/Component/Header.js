@@ -68,7 +68,6 @@ const style = StyleSheet.create({
 class Header extends Component{
     constructor(props){
         super(props)
-        console.log(props,"header")
     }
     render(){
 

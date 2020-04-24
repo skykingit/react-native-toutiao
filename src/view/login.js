@@ -8,56 +8,120 @@ let StatusBarHeight = getStatusBarHeight()
 if(Platform.OS == "android")
 StatusBarHeight = 0;
 
+let self ,timer;
+const ResendCounter = 60;
 export default class Home extends Component{
     constructor(props){
         super(props)
-        console.log(props,"login")
+        // this.state = {
+        //     phone:"177 0163 0725",
+        //     phoneTrim:"17701630725",
+        //     phoneRegFlag:true,
+        //     showNotificationArea:true,
+        //     stateCode:86,
+        //     verification:"",
+        //     resendCounter:10
+        // }
         this.state = {
             phone:"",
+            phoneTrim:"",
             phoneRegFlag:false,
+            showNotificationArea:false,
             stateCode:86,
             verification:"",
-            resendCounter:10
+            verificationTrim:"",
+            resendCounter:ResendCounter,
+            verificationRegFlag:false
         }
+        self = this;
+        if(timer)
+        clearInterval(timer)
         this.handlePhoneChange = this.handlePhoneChange.bind(this)
         this.handleVerificationChange = this.handleVerificationChange.bind(this)
         this.toggleArea = this.toggleArea.bind(this)
         this.countDown = this.countDown.bind(this)
+        this.login = this.login.bind(this)
     }
     handlePhoneChange(text){
         let reg = /^1[3456789]\d{9}$/;
-        // let trimText = _.replace( String(text),/ /g,"")
-        // let formatText ;
-        // let splitFirst = trimText.substr(0,3)
-        // let splitSecond = trimText.substr(3,4)
-        // let splitThird = trimText.substr(7,4)
-        
-        // formatText = splitFirst+ " "+splitSecond+" "+splitThird
-        // console.log(text,":",splitFirst,":",splitSecond,":",splitThird,":",formatText)
-        
-        this.setState({
-            phone:text
-        })
+        let trimText = _.replace( String(text),/ /g,"")
+        let preText = _.replace( this.state.phone,/ /g,"")
+        let formatText ;
+        if(trimText.length == 4){
+            formatText = trimText.substr(0,3)+ " "+trimText.substr(3,1);
+        }else if(trimText.length == 8){
+            formatText = trimText.substr(0,3)+ " "+trimText.substr(3,4)+ " "+trimText.substr(7,1);
+        }else{
+            formatText = text;
+        }
+
+        if(this.state.phone.length > text.length){
+            console.log("delete ...")
+            formatText = text.trim()
+        }
+
+
+        if(trimText.length < 12){
+            let phoneRegFlag = false;
+            if(trimText.length == 11){
+                phoneRegFlag = reg.test(trimText)
+            }
+            this.setState({
+                phone:formatText,
+                phoneRegFlag:phoneRegFlag,
+                phoneTrim:trimText
+            })
+        }
     }
     handleVerificationChange(text){
-        this.setState({
-            verification:text
-        })
+        let reg = /[0-9]{4}/;
+        let trimText = _.replace( String(text),/ /g,"")
+        let preText = _.replace( this.state.verification,/ /g,"")
+        let formatText ;
+        if(trimText.length == 4){
+            formatText = trimText.substr(0,1)+ " "+trimText.substr(1,1)+ " "+trimText.substr(2,1)+ " "+trimText.substr(3,1)
+        }else if(trimText.length == 3){
+            formatText = trimText.substr(0,1)+ " "+trimText.substr(1,1)+ " "+trimText.substr(2,1)+ " ";
+        }else if(trimText.length == 2){
+            formatText = trimText.substr(0,1)+ " "+trimText.substr(1,1)+ " ";
+        }else if(trimText.length == 1){
+            formatText = trimText.substr(0,1)+ " ";
+        }else{
+            formatText = text;
+        }
+
+        if(this.state.verification.length > text.length){
+            console.log("delete ...")
+            formatText = text.trim()
+        }
+        if(trimText.length < 5){
+            let verificationRegFlag = false;
+            if(trimText.length == 4){
+                verificationRegFlag = reg.test(trimText)
+            }
+            this.setState({
+                verification:formatText,
+                verificationRegFlag:verificationRegFlag,
+                verificationTrim:trimText
+            })
+        }
     }
 
     toggleArea(type = 0){
-        console.log(type)
-        this.setState({
-            phoneRegFlag:!this.state.phoneRegFlag
-        })
-        if(type == 1)
-        this.countDown()
-    }
+        if(type == 0){
+            clearInterval(timer);
 
+        }
+        this.setState({
+            showNotificationArea:!this.state.showNotificationArea,
+            resendCounter:ResendCounter
+        },()=>{
+            if(type == 1)
+            self.countDown()
+        })
+    }
     countDown(){
-        let self = this;
-        let timer = setInterval(function(){
-            console.log("in setInterval",self.state.resendCounter)
+        timer = setInterval(function(){
             if(self.state.resendCounter > 0){
                 self.setState({
                     resendCounter:self.state.resendCounter - 1
@@ -72,16 +136,20 @@ export default class Home extends Component{
     resend(){
         let self = this;
         self.setState({
-            resendCounter:10
+            resendCounter:ResendCounter
         },()=>{
             self.countDown()
         })
     }
 
+    login(){
+        console.log("login ")
+    }
+
     
     render(){
         let loginPageContent;
-        if(!this.state.phoneRegFlag){
+        if(!this.state.showNotificationArea){
             loginPageContent = (
                 <View style={style.pageContent}>
                     <TouchableOpacity style={style.backBtnArea} onPress={()=> this.props.navigation.goBack()} >
@@ -128,7 +196,13 @@ export default class Home extends Component{
                             </View>
                         </View>
                         <View style={style.nextBtn}>
-                            <TouchableOpacity style={[style.nextBtnArea]} onPress={()=>this.toggleArea(1)}>
+                            <TouchableOpacity 
+                            style={[style.nextBtnArea,{backgroundColor:this.state.phoneRegFlag?"red":"rgb(232,232,232)"}]} 
+                            activeOpacity = {this.state.phoneRegFlag?0.2:1}
+                            onPress={()=>{
+                                if(this.state.phoneRegFlag)
+                                this.toggleArea(1)
+                            } }>
                                 <Image source={ImagePath.ArrowRightWhite} style={style.arrowImg} />
                             </TouchableOpacity>
                         </View>
@@ -152,12 +226,15 @@ export default class Home extends Component{
                         </View>
                         <View style={style.secondLine}>
                             <View style={style.lItem}>
-                                <Text style={style.tipWord}>{"验证码已发送至 +"+this.state.stateCode+" "+this.state.phone}</Text>
+                                <Text style={style.tipWord}>{"验证码已发送至 +"+this.state.stateCode+" "+this.state.phoneTrim}</Text>
                             </View>
-                            {/* <TouchableOpacity style={style.lItem}>
-                                <Image source={ImagePath.Pen} style={style.wordIcon} /> 
-                                <Text style={style.tipWord}> 修改 </Text>
-                            </TouchableOpacity>   */}
+                            <TouchableOpacity style={[style.lItem]} onPress={()=>this.toggleArea()}>
+                                <Text>
+                                    <Text>   </Text>
+                                    <Image source={ImagePath.Pen} style={style.wordIcon} /> 
+                                    <Text style={style.tipWord}> 修改 </Text>
+                                </Text>
+                            </TouchableOpacity>  
                         </View>
                     </View>
                     <View style={style.loginArea}>
@@ -167,7 +244,9 @@ export default class Home extends Component{
                                 value={this.state.verification} 
                                 keyboardType="numeric"
                                 placeholder=""
-                                onChangeText={text=>this.handleVerificationChange(text)} />
+                                onChangeText={text=>this.handleVerificationChange(text)} 
+                                autoFocus={true}
+                                />
                             </View>
                             <View style={style.resendCounter}>
                                 <TouchableOpacity  style={{width:"100%"}} onPress={()=>this.resend()}>
@@ -183,18 +262,26 @@ export default class Home extends Component{
                                 </TouchableOpacity>
                             </View>
                         </View>
-                        <TouchableOpacity style={style.nextBtn}>
-                            <View style={[style.nextBtnArea]}>
+                        <View style={style.nextBtn}>
+                            <TouchableOpacity 
+                            style={[style.nextBtnArea,{backgroundColor:this.state.verificationRegFlag?"red":"rgb(232,232,232)"}]} 
+                            activeOpacity = {this.state.verificationRegFlag?0.2:1}
+                            onPress={()=>{
+                                if(this.state.verificationRegFlag)
+                                this.login()
+                            } }
+                            >
                                 <Image source={ImagePath.ArrowRightWhite} style={style.arrowImg} />
-                            </View>
-                        </TouchableOpacity>
+                            </TouchableOpacity>
+                        </View>
+                        
                     </View>
                 </View>
             )
         }
         return(
             <>
-                <StatusBar barStyle="dark-content" />
+                <StatusBar barStyle="dark-content" backgroundColor="white" />
                 {loginPageContent}
             </>
         )

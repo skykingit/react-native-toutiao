@@ -1,7 +1,9 @@
 import TYPE from './type'
 
 const initialState = {
-    releaseDropBoxFlag:false
+    releaseDropBoxFlag:false,
+    statusBarStyle:"",
+    statusBarBgColor:""
 }
 
 export default function(state = initialState,action){
@@ -11,6 +13,10 @@ export default function(state = initialState,action){
             break;
         case TYPE.HIDE_RELEASEDROPBOX:
             return {...state,releaseDropBoxFlag:false};
+            break;
+        case TYPE.CHANGE_STATUSBAR_STYLE:
+            console.log("in change....",action)
+            return {...state,statusBarStyle:action.barStyle,statusBarBgColor:action.barBgColor};
             break;
         default:
             return state;

@@ -1,26 +1,34 @@
 import React, { Component } from 'react'
-import { Text, View ,StatusBar,StyleSheet,TouchableOpacity,Image} from 'react-native';
+import { Text, View,StyleSheet,TouchableOpacity,Image,Platform} from 'react-native';
 import ImagePath from '../config/imagePath'
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+import {connect } from 'react-redux';
+import {ChangeStatusBarStyle} from '../store/common/actions'
+
 let StatusBarHeight = getStatusBarHeight()
 if(Platform.OS == "android")
 StatusBarHeight = 0;
 
-export default class Home extends Component{
+class User extends Component{
     constructor(props){
         super(props)
         this.clickFunBtn = this.clickFunBtn.bind(this)
-        console.log(props,"user")
     }
 
+    componentDidMount(){
+        this.props.navigation.addListener('tabPress', e => {
+            console.log("in user tab")
+            this.props.ChangeStatusBarStyle("dark-content","white");
+          });
+    }
     clickFunBtn(key){
         console.log("click funBtn ",key)
+        console.log(this.state)
     }
     
     render(){
         return(
             <>
-                <StatusBar barStyle="dark-content" />
                 <View style={style.pageContent}>
                     <TouchableOpacity style={style.loginArea} onPress={()=> this.props.navigation.navigate("Login")}>
                         <View style={style.loginBtn}>
@@ -273,3 +281,9 @@ const style = StyleSheet.create({
         fontSize:14
     }
 })
+
+  
+  export default connect(
+    null,
+    {ChangeStatusBarStyle}
+  )(User)

@@ -32,7 +32,7 @@ export default class ScrollPage extends Component{
       initialPage ={this.state.initialPage}
       renderTabBar={() => <ScrollableTabBar tabStyle={{paddingLeft:10,paddingRight:2}} activeTextColor="red" textStyle={{fontSize:16}} underlineStyle={{height:1}} />}
       onChangeTab={this.handleChangeTab}
-      scrollWithoutAnimation="false"
+      scrollWithoutAnimation={false}
     >
       {this.state.tabs.map((tab, i) => {
         return <ScrollTabPage 
