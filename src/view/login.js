@@ -193,6 +193,7 @@ class Login extends Component{
                                 value={this.state.phone} 
                                 keyboardType="numeric"
                                 placeholder="手机号"
+                                maxLength={14}
                                 onChangeText={text=>this.handlePhoneChange(text)} />
                             </View>
                         </View>

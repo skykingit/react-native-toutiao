@@ -38,6 +38,7 @@ export default class ScrollPage extends Component{
         return <ScrollTabPage 
          ref={(ref) => (this.state.children[i] = ref)}
           tabLabel={tab.name}
+          tabKey = {tab.key}
           i={i}
           key={i}
           pageName={this.props.PageName}

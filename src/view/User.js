@@ -38,6 +38,7 @@ class User extends Component{
                         phone:ret.phone,
                         login:true
                 },()=>{
+                    console.log(self.state)
                     self.props.ChangeLoginFlag(true)
                 })
                 console.log("in ChangeLoginFlag")

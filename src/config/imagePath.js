@@ -41,5 +41,6 @@ export default{
     Scan:require('../assets/icon/scan.png'),
     Box:require('../assets/icon/box.png'),
     CircleChart:require('../assets/icon/circleChart.png'),
+    Message:require('../assets/icon/message.png'),
     TSL:require('../assets/tsl.jpeg')
 }
