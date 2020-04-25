@@ -1,9 +1,11 @@
 import { createStore, applyMiddleware ,combineReducers} from 'redux';
 import thunk from 'redux-thunk'
 import Common from './common/reduces'
+import User from './user/reduces'
 
 const RootReducer = combineReducers({
-    Common
+    Common,
+    User
 })
 
 let store = createStore(RootReducer,applyMiddleware(thunk))

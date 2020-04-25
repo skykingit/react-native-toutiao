@@ -27,7 +27,6 @@ export default class Recommend extends Component{
         let start = 0
         let end = this.state.pageCount
         let initList = _.slice(AllList,start,end)
-        console.log(initList)
         this.setState({
             RecommendListData:initList
         })
@@ -71,6 +70,7 @@ export default class Recommend extends Component{
             return(
                 <View style={[style.pageContent]}>
                    <FlatList
+                   initialNumToRender={2}
                    data={this.state.RecommendListData}
                    renderItem={({item})=>{
                     return <VideoItem item={item} />

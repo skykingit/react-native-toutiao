@@ -27,5 +27,65 @@ const storage = new Storage({
 // window.storage = storage;
 
 // 对于react native
-console.log("in src/storage")
+function getStorage(key,id){
+  return new Promise((resolve,reject)=>{
+    let loadObj = id?{
+      key:key,
+      id:id,
+      autoSync:true,
+      syncInBackground: true}:
+      {
+        key:key,
+        autoSync:true,
+        syncInBackground: true
+      }
+    storage.load(loadObj).then(ret=>{
+        resolve(ret)
+        
+    }).catch(err => {
+      reject(err)
+    })
+  })
+}
+
+function setStorage(key,data,id){
+  return new Promise((resolve,reject)=>{
+    try{
+      let saveObj = id?{
+        key:key,data:data,id:id
+      }:
+      {
+        key:key,data:data
+      }
+      storage.save(saveObj)
+      resolve(true)
+    }
+    catch(e){
+      reject(e)
+    }
+  })
+
+}
+
+function removeStorage(key,id){
+  return new Promise((resolve,reject)=>{
+    try{
+      let removeObj = id?{
+        key:key,id:id
+      }:
+      {
+        key:key
+      }
+      storage.remove(removeObj)
+      resolve(true)
+    }
+    catch(e){
+      reject(e)
+    }
+  })
+
+}
+global.setStorage = setStorage
+global.getStorage = getStorage
+global.removeStorage = removeStorage
 global.Storage = storage;

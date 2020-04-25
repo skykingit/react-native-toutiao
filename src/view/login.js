@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View ,StatusBar,StyleSheet,TouchableOpacity,Image,TextInput,Platform} from 'react-native';
+import { Text, View ,StatusBar,StyleSheet,TouchableOpacity,Image,TextInput,Platform, Alert} from 'react-native';
 import ImagePath from '../config/imagePath'
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 const _ = require("lodash")
 import {connect } from 'react-redux';
-import {ChangeLoginFlag } from '../store/common/actions'
+import {setUserInfo} from '../store/user/actions'
+import {UserInfoDB} from '../storage/config'
 
 let StatusBarHeight = getStatusBarHeight()
 if(Platform.OS == "android")
@@ -139,12 +140,17 @@ class Login extends Component{
         let userInfo = {
             phone:this.state.phoneTrim
         }
-        Storage.save({
-            key:"loginFlag",
-            data:userInfo
+        
+        setStorage(UserInfoDB,userInfo).then( (ok)=>{
+            if(ok){
+                this.props.setUserInfo(userInfo)
+                this.props.navigation.navigate("User")
+            }
+
+        }).catch((e)=>{
+            Alert("ERROR",e.toString())
         })
-        this.props.ChangeLoginFlag(true)
-        this.props.navigation.navigate("User")
+        
     }
 
     
@@ -408,5 +414,5 @@ const style = StyleSheet.create({
   
   export default connect(
     null,
-    {ChangeLoginFlag}
+    {setUserInfo}
   )(Login)

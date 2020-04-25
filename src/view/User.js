@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View,StyleSheet,TouchableOpacity,Image,Platform} from 'react-native';
+import { Text, View,StyleSheet,TouchableOpacity,Image,Platform,Alert} from 'react-native';
 import ImagePath from '../config/imagePath'
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import {connect } from 'react-redux';
 import {ChangeStatusBarStyle,ChangeLoginFlag} from '../store/common/actions'
+import {setUserInfo} from '../store/user/actions'
+import {UserInfoDB} from '../storage/config'
 
 let StatusBarHeight = getStatusBarHeight()
 if(Platform.OS == "android")
@@ -19,31 +21,21 @@ class User extends Component{
             login:false
         }
     }
-
+    componentWillMount(){
+        getStorage(UserInfoDB).then((res)=>{
+            console.log("getStorage",res)
+            if(res&&res.phone)
+            this.props.setUserInfo(res) 
+          }).catch((e)=>{
+              console.log(e)
+        })
+    }
     componentDidMount(){
         this.props.navigation.addListener('tabPress', e => {
-            console.log("in user tab")
-            this.props.ChangeStatusBarStyle("dark-content","white");
-          });
+         console.log("in user tab")
+         this.props.ChangeStatusBarStyle("dark-content","white");
+        });
           let self = this;
-
-          Storage.load({
-              key:"loginFlag",
-              autoSync:true,
-              syncInBackground: true
-          }).then(ret=>{
-              console.log(ret)
-              if(ret&& ret.phone){
-                self.setState({
-                        phone:ret.phone,
-                        login:true
-                },()=>{
-                    console.log(self.state)
-                    self.props.ChangeLoginFlag(true)
-                })
-                console.log("in ChangeLoginFlag")
-              }
-          })
     }
     clickFunBtn(key){
         console.log("click funBtn ",key)
@@ -68,7 +60,7 @@ class User extends Component{
                             <View style={style.nameArea}>
                                 <Text style={style.userName}>
                                     <Text>
-                                        {this.state.phone}
+                                        {this.props.phone}
                                     </Text>
                                     <Image source={ImagePath.ArrowRight} resizeMode="contain" style={style.icon} />
                                 </Text>
@@ -389,10 +381,10 @@ const style = StyleSheet.create({
 
 function mapStateToProps(state){
     console.log(state)
-    return {loginFlag:state.Common.loginFlag}
+    return {loginFlag:state.User.loginFlag,phone:state.User.userInfo.phone}
 } 
 
   export default connect(
     mapStateToProps,
-    {ChangeStatusBarStyle,ChangeLoginFlag}
+    {ChangeStatusBarStyle,ChangeLoginFlag,setUserInfo}
   )(User)

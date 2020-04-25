@@ -4,7 +4,8 @@ import ImagePath from '../config/imagePath'
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import NavHeader from './Component/NavHeader'
 import {connect } from 'react-redux';
-import {ChangeLoginFlag} from '../store/common/actions'
+import {logOut} from '../store/user/actions'
+import {UserInfoDB} from '../storage/config'
 
 let StatusBarHeight = getStatusBarHeight()
 if(Platform.OS == "android")
@@ -36,11 +37,12 @@ class Setting extends Component{
     }
     confirmLogout(){
         console.log("confirmLogout")
-        Storage.remove({
-            key:"loginFlag"
+        removeStorage(UserInfoDB).then((ok)=>{
+            if(ok){
+                this.props.logOut()
+                this.props.navigation.navigate("User")
+            }
         })
-        this.props.ChangeLoginFlag(false)
-        this.props.navigation.navigate("User")
     }
     render(){
         return(
@@ -131,5 +133,5 @@ const style = StyleSheet.create({
 
 export default connect(
     null,
-    {ChangeLoginFlag}
+    {logOut}
   )(Setting)
