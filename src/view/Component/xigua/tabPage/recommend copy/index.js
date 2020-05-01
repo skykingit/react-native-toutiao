@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import { Text, View ,StyleSheet,FlatList} from 'react-native';
-import APIData from "../../../../../simulateData/home"
-import NewsItemTop from './NewsItemTop'
-import NewsItemOne from './NewItemTypeOne'
-import NewsItemTwo from './NewItemTypeTwo'
+import APIDataList from '../../../../../simulateData/xigua'
+import VideoItem from './VideoItem'
 
 const _ = require("lodash")
 
-export default class Reommand extends Component{
+export default class Recommend extends Component{
     constructor(props){
         super(props)
         this.state = {
-            newsListData:[],
+            RecommendListData:[],
             currentPageNumber:1,
-            pageCount:6,
+            pageCount:3,
             noMoreFlag:false,
             refreshingFlag:false
         }
@@ -23,20 +21,21 @@ export default class Reommand extends Component{
     }
 
     componentDidMount(){
-        const AllList = APIData.Recommend
+        console.log("in xigua componentDidMount")
+        const AllList = APIDataList.Recommend
         let count = this.state.pageCount
         let start = 0
         let end = this.state.pageCount
         let initList = _.slice(AllList,start,end)
         this.setState({
-            newsListData:initList
+            RecommendListData:initList
         })
     }
 
     getMoreNewsList(){
         if(!this.state.noMoreFlag){
             let pageNumber = this.state.currentPageNumber+1
-            const AllList = APIData.Recommend
+            const AllList = APIDataList.Recommend
             let count = this.state.pageCount
             let start = 0
             let noMoreFlag = AllList.length > pageNumber*count?false:true
@@ -45,7 +44,7 @@ export default class Reommand extends Component{
             let self = this
             if(!this.state.noMoreFlag)
                 self.setState({
-                    newsListData:moreList,
+                    RecommendListData:moreList,
                     currentPageNumber:pageNumber,
                     noMoreFlag:noMoreFlag,
                     refreshingFlag:false
@@ -71,19 +70,12 @@ export default class Reommand extends Component{
             return(
                 <View style={[style.pageContent]}>
                    <FlatList
-                   data={this.state.newsListData}
+                   initialNumToRender={2}
+                   data={this.state.RecommendListData}
                    renderItem={({item})=>{
-                       if(item.type ==  0){
-                            return <NewsItemTop item={item}/>
-                        
-                       }else if(item.type == 1){
-                            return <NewsItemOne item={item}/>
-                            
-                       }else{
-                            return <NewsItemTwo item={item}/>
-                       }
+                    return <VideoItem item={item} />
                    }}
-                   keyExtractor={item=>item.item_id}
+                   keyExtractor={item=>item.data.log_pb}
                    onEndReachedThreshold={ 0.1}
                    onEndReached={()=>{
                        if(!this.state.noMoreFlag)
@@ -117,6 +109,7 @@ export default class Reommand extends Component{
 
 const style = StyleSheet.create({
     pageContent:{
+        paddingBottom:30,
         height:"100%"
     },
     listFooter:{
@@ -129,5 +122,8 @@ const style = StyleSheet.create({
         fontSize:16
     }
 })
+
+
+
 
 

@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-04-16 13:44:26
+ * @LastEditTime: 2020-04-30 17:04:22
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /Toutiao-github/src/view/Component/xigua/ScrollTabPage.js
+ */
 import React, { Component } from 'react'
 import { Text, View ,StyleSheet,FlatList} from 'react-native';
 import Developing from '../Developing'
@@ -30,12 +38,12 @@ export default class ScrollPageContent extends Component{
         switch(this.props.tabKey){
             case "recommand":
                 renderComponent = (
-                    <RecommandPage />
+                    <RecommandPage  navigation={this.props.navigation} />
                 );
                 break;
             default:
                 renderComponent = (
-                    <Developing tabPage={this.props.tabLabel} />
+                    <Developing navigation={this.props.navigation} tabPage={this.props.tabLabel} />
                 );
         }
         return renderComponent;

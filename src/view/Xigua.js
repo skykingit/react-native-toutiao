@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-04-14 21:42:23
+ * @LastEditTime: 2020-04-30 17:03:53
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /Toutiao-github/src/view/Xigua.js
+ */
 import React, { Component } from 'react'
 import { Text, View ,StatusBar} from 'react-native';
 import Header from './Component/Header'
@@ -22,7 +30,7 @@ class Xigua extends Component{
                 <StatusBar barStyle="light-content" />
                 <Header navigation={this.props.navigation} />
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <ScrollTab  PageName="Xigua" />
+                    <ScrollTab  PageName="Xigua" navigation={this.props.navigation} />
                 
                 </View>
             </>

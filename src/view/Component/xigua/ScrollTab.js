@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-04-15 21:55:11
+ * @LastEditTime: 2020-04-30 17:04:06
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /Toutiao-github/src/view/Component/xigua/ScrollTab.js
+ */
 import React,{Component} from 'react';
 import {
   StyleSheet
@@ -42,6 +50,7 @@ export default class ScrollPage extends Component{
           i={i}
           key={i}
           pageName={this.props.PageName}
+          navigation={this.props.navigation}
       />;
       })}
     </ScrollableTabView>;

@@ -11,7 +11,7 @@ function ListItem({item,index}){
         <View style={style.listItem}>
             <View style={style.itemArea}>
                 <View style={style.indexArea}>
-                    <Text style={[style.indexWord,{color:(index < 3)?"red":"",fontSize:(index < 3)?18:14}]}>{index+1}</Text>
+                    <Text style={[style.indexWord,{color:(index < 3)?"red":"black",fontSize:(index < 3)?18:14}]}>{index+1}</Text>
                 </View>
                 <View style={style.ItemTitleArea}>
                     <Text style={style.titleWord}>{item.name}</Text>

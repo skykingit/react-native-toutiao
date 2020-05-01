@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View,StyleSheet,TouchableOpacity,Image,Platform,Alert} from 'react-native';
+import { Text, View,StyleSheet,TouchableOpacity,Image,Platform,Alert,StatusBar} from 'react-native';
 import ImagePath from '../config/imagePath'
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import {connect } from 'react-redux';
@@ -14,6 +14,7 @@ StatusBarHeight = 0;
 class User extends Component{
     constructor(props){
         super(props)
+        console.log("home",props)
         this.clickFunBtn = this.clickFunBtn.bind(this)
         this.state = {
             user:"",
@@ -37,6 +38,7 @@ class User extends Component{
         });
           let self = this;
     }
+
     clickFunBtn(key){
         console.log("click funBtn ",key)
         switch(key){
