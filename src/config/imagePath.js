@@ -1,8 +1,16 @@
+/*
+ * @Author: your name
+ * @Date: 2020-04-14 17:29:45
+ * @LastEditTime: 2020-05-26 12:40:25
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /Toutiao-github/src/config/imagePath.js
+ */ 
 export default{
     Home:require('../assets/icon/home.png'),
     HomeFill:require('../assets/icon/home_fill.png'),
-    Xigua:require('../assets/icon/arrowTriangle_right.png'),
-    XiguaFill:require('../assets/icon/arrowTriangle_right_fill.png'),
+    Xigua:require('../assets/icon/right-triangle.png'),
+    XiguaFill:require('../assets/icon/right-triangle-solid.png'),
     Hot:require('../assets/icon/search.png'),
     HotFill:require('../assets/icon/search_fill.png'),
     Movie:require('../assets/icon/video.png'),

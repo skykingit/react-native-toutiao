@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View,StyleSheet,TouchableOpacity,Image,Platform,Alert,StatusBar} from 'react-native';
+import { Text,ScrollView,View,StyleSheet,TouchableOpacity,Image,Platform,Alert,StatusBar} from 'react-native';
 import ImagePath from '../config/imagePath'
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import {connect } from 'react-redux';
@@ -96,7 +96,10 @@ class User extends Component{
         }
         return(
             <>
-                <View style={style.pageContent}>
+                <StatusBar 
+                barStyle={this.props&&this.props.statusBarStyle?this.props.statusBarStyle:"dark-content"} 
+                backgroundColor={this.props&&this.props.statusBarBgColor?this.props.statusBarBgColor:"white"} />
+                <ScrollView style={style.pageContent}>
                     {userInfoComponent}
                     <View style={style.funArea}>
                         <View style={style.funAreaTitleArea}>
@@ -278,7 +281,7 @@ class User extends Component{
                         </View>
                     </View>
 
-                </View>
+                </ScrollView>
             </>
         )
     }
@@ -341,7 +344,7 @@ const style = StyleSheet.create({
         padding:8
     },
     itemWord:{
-        fontSize:14
+        fontSize:13
     },
     userInfoArea:{
         flexDirection:"row",

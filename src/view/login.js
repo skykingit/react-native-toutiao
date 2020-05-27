@@ -386,12 +386,14 @@ const style = StyleSheet.create({
     },
     phone:{
         fontSize:24,
-        lineHeight:30
+        lineHeight:30,
+        color:"black"
     },
     verification:{
         fontSize:24,
         lineHeight:30,
-        width:"100%"
+        width:"100%",
+        color:"black"
     },
     nextBtn:{
         alignItems:"center",

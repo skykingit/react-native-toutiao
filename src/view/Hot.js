@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View ,StatusBar,Button,StyleSheet,FlatList,Image} from 'react-native';
+import { Text, View ,ScrollView, StatusBar,Button,StyleSheet,FlatList,Image} from 'react-native';
 import Header from './Component/Header'
 import HotListData from '../simulateData/hot/hotList'
 import ImagePath from '../config/imagePath'
@@ -41,7 +41,7 @@ class Hot extends Component{
         return(
             <>
                 <Header navigation={this.props.navigation} />
-                <View style={style.pageContent}>
+                <ScrollView style={style.pageContent}>
                     <View style={style.headTitle}>
                         <View style={style.titleArea}>
                             <View >
@@ -63,7 +63,7 @@ class Hot extends Component{
                         />
                     </View>
                 
-                </View>
+                </ScrollView>
             </>
         )
     }
