@@ -1,7 +1,7 @@
 <!--
  * @Author: skykingit
  * @Date: 2020-04-14 16:22:26
- * @LastEditTime: 2020-06-02 20:50:38
+ * @LastEditTime: 2020-06-02 21:00:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /Toutiao-github/README.md
@@ -66,12 +66,25 @@ yarn android
 
 ## 部分截屏
 
-<img src="https://skykingit.github.io/react-native-toutiao/screenshot/IMG_0329.PNG" width="365" height="619"/> 
+##### 主页
+<img src="https://skykingit.github.io/react-native-toutiao/screenshot/IMG_0329.PNG" width="365" height="619"/>
+
+##### 发布菜单
 <img src="https://skykingit.github.io/react-native-toutiao/screenshot/IMG_0330.PNG" width="365" height="619"/> 
+
+##### 西瓜视频页面
 <img src="https://skykingit.github.io/react-native-toutiao/screenshot/IMG_0323.PNG" width="365" height="619"/> 
+
+##### 热榜页面
 <img src="https://skykingit.github.io/react-native-toutiao/screenshot/IMG_0324.PNG" width="365" height="619"/> 
+
+##### 登录页面
 <img src="https://skykingit.github.io/react-native-toutiao/screenshot/IMG_0325.PNG" width="365" height="619"/> 
+
+##### 输入手机号
 <img src="https://skykingit.github.io/react-native-toutiao/screenshot/IMG_0327.PNG" width="365" height="619"/> 
+
+##### 输入验证码
 <img src="https://skykingit.github.io/react-native-toutiao/screenshot/IMG_0328.PNG" width="365" height="619"/> 
 
 
