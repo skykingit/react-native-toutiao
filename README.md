@@ -1,7 +1,7 @@
 <!--
  * @Author: skykingit
  * @Date: 2020-04-14 16:22:26
- * @LastEditTime: 2020-06-02 20:46:59
+ * @LastEditTime: 2020-06-02 20:50:38
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /Toutiao-github/README.md
@@ -54,15 +54,15 @@ yarn android
 - [x] 发布功能菜单 --完成
 - [x] 登录,注册 --完成
 - [x] 退出 --完成 
-- [] 新闻详情页 
-- [] 搜索页面
-- [] 发布微头条
-- [] 写文章
-- [] 拍小视频
-- [] 发视频
-- [] 提问
-- [] 消息页面
-- [] 未完待续
+- [ ] 新闻详情页 
+- [ ] 搜索页面
+- [ ] 发布微头条
+- [ ] 写文章
+- [ ] 拍小视频
+- [ ] 发视频
+- [ ] 提问
+- [ ] 消息页面
+- [ ] 未完待续
 
 ## 部分截屏
 
